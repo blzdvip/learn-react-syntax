@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js" ></script>
+		<script src="https://cdn.bootcss.com/react/15.6.1/react.min.js"></script>
+		<script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
+		<script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.min.js"></script>
+		
+		<style type="text/css">
+			.div {
+				height: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>
+			<span class="label label-info">DEMO 4</span>
+		</h1>
+		<br />
+		<br />
+		<br />
+		
+		<div id="well" class="well div">
+			
+		</div>
+		<script type="text/babel">
+			var Text = React.createClass({
+				getInitialState: function () {
+					return {
+						cur_time: 0
+					};
+				},
+				request: function () {
+					$.ajax({
+						type: "GET",
+						url: "http://xxx",
+						success: function (data) {
+							this.setState({
+								cur_time: data.timestamp
+							});
+						}.bind(this),
+						complete: function () {
+							this.setState({
+								cur_time: Date.parse(new Date()) / 1000
+							});
+						}.bind(this)
+					});
+				},
+				componentDidMount: function () {
+					setInterval(this.request, 1000);	
+				},
+				render: function () {
+					return (
+						<div className="col-xs-12">
+							当前的时间{this.state.cur_time}
+							<div className={this.state.cur_time % 2 == 0 ? "hidden" : "col-xs-6 alert alert-success"}>
+								<span>最后一位是奇数</span>
+							</div>
+							<div className={this.state.cur_time % 2 != 0 ? "hidden" : "col-xs-6 alert alert-danger"}>
+								<span>最后一位是偶数</span>
+							</div>
+						</div>
+					);
+				}
+			});
+			
+			ReactDOM.render(
+				<Text/>,
+				document.getElementById('well')
+			);
+		</script>
+	</body>
+
+</html>

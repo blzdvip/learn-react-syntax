@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="https://cdn.bootcss.com/react/15.6.1/react.min.js"></script>
+		<script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
+		<script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.min.js"></script>
+	</head>
+
+	<body>
+		<div id="container"></div>
+    <script type="text/babel">
+    	var TestClickComponent = React.createClass({
+    		handleClick: function (event) {
+    			//获取DOM节点
+    			var tipE = ReactDOM.findDOMNode(this.refs.tip);
+    			if(tipE.style.display == 'none'){
+    				tipE.style.display = 'inline';
+    			} else {
+    				tipE.style.display = 'none';
+    			}
+    			
+    			event.stopPropagation();
+    			event.preventDefault();
+    		},
+    		render: function () {
+    			return (
+    				<div>
+    					<button onClick={this.handleClick}>显示/隐藏</button><span ref="tip">测试点击</span>
+    				</div>
+    			);
+    		}
+    	});
+    	
+    	var TestInputComponent = React.createClass({
+    		getInitialState: function () {
+    			return {
+    				inputComponent: ''
+    			};
+    		},
+    		handleChange: function (event) {
+    			this.setState({
+    				inputComponent: event.target.value
+    			});
+    			
+    			event.preventDefault();
+    			event.stopPropagation();
+    		},
+    		render: function () {
+    			return (
+    				<div>
+    					<input type="text" onChange={this.handleChange} /><span>{this.state.inputComponent}</span>
+    				</div>
+    			);
+    		}
+    	});
+    	
+    	ReactDOM.render(
+    		<div>
+    			<TestClickComponent/>
+	    		<TestInputComponent/> 
+    		</div>, 
+    		document.getElementById("container"));
+    </script>
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js" ></script>
+		<script src="https://cdn.bootcss.com/react/15.6.1/react.min.js"></script>
+		<script src="https://cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
+		<script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.min.js"></script>
+	</head>
+
+	<body>
+		<h1>
+			<span class="label label-info">DEMO 2</span>
+		</h1>
+		<br />
+		<br />
+		<br />
+		
+		<div id="well" class="well">
+			
+		</div>
+		<script type="text/babel">
+			var Text = React.createClass({
+				render: function () {
+					return (
+						<div className="a">
+							大家好，我是用{this.props.name}渲染出来的！age={this.props.age}
+						</div>
+					);
+				}
+			});
+			
+			ReactDOM.render(
+				<Text name="react" age={181}/>,
+				document.getElementById('well')
+			);
+		</script>
+	</body>
+
+</html>

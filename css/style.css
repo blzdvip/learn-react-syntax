@@ -1,0 +1,23 @@
+* {
+	font-family: sans-serif;
+	margin: 0;
+}
+
+.alert-text{
+	color: red;
+}
+
+button {
+	height: 40px;
+	width: 200px;
+}
+
+.warning {
+	background-color: #f00;
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+	
+	font-size: 14pt;
+	color: #fff;
+}
